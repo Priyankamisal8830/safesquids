@@ -1,0 +1,28 @@
+#!/bin/bash
+
+memory_usage_monitor() {
+  echo "Memory Usage"
+  echo "-------------"
+
+  
+  memory_stats=$(free -h)
+
+  
+  total_mem=$(echo "$memory_stats" | awk '/Mem:/ {print $2}')
+  used_mem=$(echo "$memory_stats" | awk '/Mem:/ {print $3}')
+  free_mem=$(echo "$memory_stats" | awk '/Mem:/ {print $4}')
+  total_swap=$(echo "$memory_stats" | awk '/Swap:/ {print $2}')
+  used_swap=$(echo "$memory_stats" | awk '/Swap:/ {print $3}')
+  free_swap=$(echo "$memory_stats" | awk '/Swap:/ {print $4}')
+
+ 
+  echo "Total Memory: $total_mem"
+  echo "Used Memory: $used_mem"
+  echo "Free Memory: $free_mem"
+  echo "Total Swap: $total_swap"
+  echo "Used Swap: $used_swap"
+  echo "Free Swap: $free_swap"
+}
+
+
+memory_usage_monitor
